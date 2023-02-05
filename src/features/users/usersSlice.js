@@ -1,16 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 
-const initialState = [
-    {id : 0, name : "Tianna Jam"},
-    {id : 1, name : "Trevor Pal"},
-    {id : 2, name : "Rob Willie"}
-]
+const usersAdapter = createEntityAdapter({
+    sortComparer : (a, b) => (a.name > b.name)
+})
 
 const usersSlice = createSlice({
     name : "users",
-    initialState,
+    initialState : usersAdapter.getInitialState({loading : "idle"}),
     reducers: {
-        
+        addUser : usersAdapter.addOne,
+        usersLoading(state, action) {
+            if (state.loading === "idle") {
+                state.loading = "pending"
+            }
+        },
+        usersReceived(state, action) {
+            if (state.loading === "pending") {
+                usersAdapter.setAll(state, action.payload);
+                state.loading = "idle";
+            }
+        }
     }
 })
 
