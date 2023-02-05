@@ -1,0 +1,21 @@
+.post-excerpt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: max-content;
+    padding-inline: 15px;
+    border: none;
+    border-radius: 5px;
+    background: #ada;
+}
+.posts-list {
+    grid-column: 1 / 4;
+    grid-row: 1 / 12;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    height: auto;
+}

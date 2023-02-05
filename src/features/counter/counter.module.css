@@ -1,0 +1,34 @@
+.row {
+    grid-column: 1 / 12;
+    grid-row: 1 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textbox {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100px;
+    height: max-content;
+    padding: 15px 15px;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    height: max-content;
+    max-height: 50px;
+    padding: 10px 20px;
+    background-color: rgb(197, 170, 221);
+    border: none;
+    border-radius: 5px;
+}
+.value {
+    font-size: 2rem;
+}
