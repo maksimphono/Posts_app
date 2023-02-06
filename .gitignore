@@ -11,6 +11,7 @@
 #backend
 #/backend
 /backend/*/venv
+/backend/*/*/secret.py
 
 #frontend
 /frontend
