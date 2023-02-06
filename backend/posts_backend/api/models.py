@@ -8,7 +8,7 @@ class PostModel(models.Model):
     content = models.TextField()
 
     def __str__(self):
-        return self.content
+        return self.content[:9]
 
 class ImageModel(models.Model):
     name = models.CharField(max_length=19, blank=True, null = True)
