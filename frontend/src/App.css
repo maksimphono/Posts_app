@@ -1,0 +1,6 @@
+.App {
+  display: grid;
+  width: auto;
+  height: 100vh;
+  grid-template: repeat(12, 1fr) / repeat(12, 1fr);
+}
