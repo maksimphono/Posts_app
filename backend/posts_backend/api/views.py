@@ -24,6 +24,21 @@ class PostsListAPIView(APIView):
         else:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
+class SinglePostAPIView(APIView):
+    def get_object(self, post_id, user_id = 0):
+        try:
+            return PostModel.objects.get(id = post_id)
+        except PostModel.DoesNotExist:
+            return None
+    
+    def get(self, request, post_id):
+        post_instance = self.get_object(post_id)
+        if post_instance:
+            serializer = PostsSerializer(post_instance)
+            return Response(serializer.data, status = status.HTTP_200_OK)
+        return Response({"response" : "Object not found"}, status = status.HTTP_400_BAD_REQUEST)
+
+
 class ImagesListAPIView(APIView):
     def get(self, req):
         serializer = ImageSerializer(ImageModel.objects.all(), many = True)
