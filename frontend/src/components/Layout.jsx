@@ -1,5 +1,6 @@
 import React from 'react'
-import {Outlet, Link} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
+//import {Outlet} from "react-dom";
 import Navigation from "./Navigation.jsx";
 import Footer from './Footer.jsx';
 

@@ -1,0 +1,8 @@
+.post__list {
+    display: flex;
+    justify-content: center;
+    align-items: space-evenly;
+    gap: 20px;
+    padding: 20px 0;
+    overflow-y: auto;
+}

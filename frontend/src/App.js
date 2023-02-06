@@ -3,19 +3,23 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Redirect
+  Routes
 } from "react-router-dom";
-
+import { Provider } from 'react-redux';
 import Layout from "./components/Layout.jsx";
+import HomePage from "./pages/HomePage";
+import store from "./store.js";
+
 
 function App() {
   return (
     <Provider store = {store}>
       <Router>
-        <Switch>
-          <Route path = "/" component={<Layout />} />
-        </Switch>
+        <Routes>
+          <Route path = "/" element={<Layout />}>
+            <Route index element = {<HomePage/>} />
+          </Route>
+        </Routes>
       </Router>
     </Provider>
   );
