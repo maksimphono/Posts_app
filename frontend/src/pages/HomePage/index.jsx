@@ -10,6 +10,7 @@ export default function HomePage() {
     return (
     <div className = {styles.post__list}>
       <PostItem post = {posts[0]} />
+      <PostItem post = {posts[0]} />
     </div>
   )
 }

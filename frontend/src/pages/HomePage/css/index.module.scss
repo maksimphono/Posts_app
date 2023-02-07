@@ -1,9 +1,10 @@
 .post__list {
     display: flex;
-    justify-content: center;
-    align-items: space-evenly;
-    gap: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
     padding: 20px 0;
-    height: 10000px;
+    height: max-content;
     overflow-y: auto;
 }
