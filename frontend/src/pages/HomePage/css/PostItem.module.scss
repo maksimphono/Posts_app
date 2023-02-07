@@ -18,14 +18,21 @@
     .post__header {
         position: relative;
         grid-area: header;
-        display: flex;
+        display: grid;
+        grid-template: 1fr / 50px 50px;
         align-items: center;
-        padding: 0 10px;
+        justify-items: start;
+        gap: 5px;
+        padding-inline: 10px;
         width: auto;
         height: auto;
-        //border-left: 2px solid #333;
-        //border-bottom: 2px dotted #333;
-        //border-bottom-left-radius: inherit;
+
+        img.avatar {
+            display: block;
+            border-radius: 50%;
+            height: 80%;
+            aspect-ratio: 1 / 1;
+        }
     }
 
     .images {
@@ -35,7 +42,6 @@
         border-radius: inherit;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        //border-right: 2px dotted #333;
         overflow: hidden;
 
         img {
@@ -56,13 +62,26 @@
     }
     .footer {
         grid-area: footer;
-        display: flex;
+        display: grid;
+        grid-template: 1fr / repeat(2, 60px) auto;
+        place-items: center start;
         width: auto;
         height: auto;
-        padding: 10px;
-        //background-color: rgb(170, 196, 221);
-        //border-left: 2px solid #333;
-        //border-bottom: 2px solid #333;
+        padding-inline: 5%;
         overflow-y: hidden;
+
+        * {
+            display: block;
+            height: 60%;
+            aspect-ratio: 1 / 1;
+
+            &:hover {
+                filter: invert(50%);
+                cursor: pointer
+            }
+            &:last-child {
+                justify-self: end;
+            }
+        }
     }
 }
