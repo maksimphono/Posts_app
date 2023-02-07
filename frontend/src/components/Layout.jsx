@@ -8,7 +8,9 @@ function Layout() {
   return (
     <>
       <Navigation />
-      <Outlet />
+      <div id = "Outlet">
+        <Outlet  />
+      </div>
       <Footer />
     </>
   )
