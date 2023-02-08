@@ -7,12 +7,12 @@ const PostsSlice = createSlice({
     name : "posts",
     initialState : postsAdapter.getInitialState({status : "idle"}),
     reducers : {
-        postsFetched(state, action) {
-            postsAdapter.setAll(action.payload);
+        fetchPosts(state, action) {
+            postsAdapter.setAll(state, action.payload);
         }
     }
 })
 
-export const {postsFetched} = PostsSlice.actions;
+export const {fetchPosts} = PostsSlice.actions;
 
 export default PostsSlice.reducer;

@@ -2,15 +2,37 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PostItem from './PostItem';
 import styles from "./css/index.module.scss"
+import $ from "jquery";
+import { fetchPosts } from '../../context/postsSlice';
 
-export default function HomePage() {
-    const dispatch = useDispatch();
-    const posts = useSelector(state => state.posts);
+import {posts as postsData} from "../../data/posts.js";
 
+function HomePageScene({posts}) {
+  useEffect(() => console.log(posts), [])
+    
+    if (!posts) {
+      return <h1>Loading</h1>
+    }
     return (
+    
     <div className = {styles.post__list}>
-      <PostItem post = {posts[0]} />
-      <PostItem post = {posts[0]} />
+      {posts?.ids?.map(item => (
+        <PostItem post = {posts.entities[item]} />
+      ))}
     </div>
+    
   )
+}
+
+export default function HomePage(props){
+  const dispatch = useDispatch();
+  const posts = useSelector(state => state.posts);
+
+  useEffect(() => {
+    console.log(postsData)
+    dispatch(fetchPosts(postsData));
+    console.log(posts.entities)
+  }, []);
+
+  return <HomePageScene posts = {posts}/>
 }
