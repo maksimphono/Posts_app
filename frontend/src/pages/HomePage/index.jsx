@@ -30,7 +30,7 @@ export default function HomePage(props){
 
   useEffect(() => {
     console.log(postsData)
-    dispatch(fetchPosts(postsData));
+    dispatch(fetchPosts());
     console.log(posts.entities)
   }, []);
 
