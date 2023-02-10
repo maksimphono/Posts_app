@@ -17,7 +17,7 @@ function HomePageScene({posts}) {
     
     <div className = {styles.post__list}>
       {posts?.ids?.map(item => (
-        <PostItem post = {posts.entities[item]} />
+        <PostItem key = {item} _key = {item} post = {posts.entities[item]} />
       ))}
     </div>
     

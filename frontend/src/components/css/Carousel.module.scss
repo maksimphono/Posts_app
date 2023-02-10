@@ -1,0 +1,51 @@
+.carousel {
+    position: relative;
+    display: grid;
+    grid-template: 1fr / 1fr;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+
+    button.left,
+    button.right {
+        display: none;
+    }
+
+    img {
+        display: block;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+
+    ul {
+        list-style: none;
+        position: absolute;
+        align-self: end;
+        justify-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        height: max-content;
+        background: #0000;
+        margin-bottom: 20%;
+
+        input[type=radio].switch__images {
+            all: unset;
+            display: flex;
+            width: 20px;
+            aspect-ratio: 1 / 1;
+            border: 2px solid #555;
+            border-radius: 50%;
+            background-color: #fff;
+
+            &:checked {
+                background-color: rgb(106, 182, 253);
+            }
+        }
+    }
+
+    
+}

@@ -2,16 +2,20 @@ import React from 'react'
 import styles from "./css/PostItem.module.scss";
 import home_icon from "../../assets/icons/icons8-home.svg";
 import search_icon from "../../assets/icons/icons8-search.svg"
+import Carousel from '../../components/ui/Carousel';
+import {images} from "../../data/images.js";
+import { useEffect } from 'react';
 
-function PostItem({post}) {
+function PostItem({_key, post}) {
+
   return (
     <div className={styles.post__item}>
       <div className = {styles.post__header}>
-        <img className="avatar" src={home_icon} alt="" />
+        <img className="avatar" src={home_icon} alt="Imagee" />
         {post.user}
       </div>
       <div className={styles.images}>
-        <img src="https://th.bing.com/th/id/R.cf9eb0f2dabb9017eae919121bdff925?rik=y7xMZzy3bOXmXA&riu=http%3a%2f%2fwww.voyageurtripper.com%2fwp-content%2fuploads%2f2021%2f05%2fBest-Viewpoints-in-Vancouver-Jerico-Beach-3.jpg&ehk=LhvugNm03B9Yc6PInxnjlErtgO8d0R7Ty79wt8mwivQ%3d&risl=&pid=ImgRaw&r=0" alt="" />
+        <Carousel _key = {_key} images = {images} />
       </div>
       <div className={styles.content}>
         {post.content}

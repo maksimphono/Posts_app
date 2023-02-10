@@ -21,3 +21,10 @@
     height: auto;
     margin-top: 70px;
 }
+
+.empty__image {
+    display: block;
+    width: auto;
+    height: 100%;
+    background: linear-gradient(-45deg, rgb(49, 231, 164), rgb(49, 182, 231));
+}
