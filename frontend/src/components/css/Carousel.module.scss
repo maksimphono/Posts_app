@@ -6,16 +6,61 @@
     height: 100%;
     overflow: hidden;
 
-    button.left,
-    button.right {
+    .left, .right, ul {
+        transition: .4;
         display: none;
+        opacity: 0;
     }
+
+    &:hover {
+        .left, .right {
+            display: block;
+            opacity: 1;
+        }
+        ul {
+            display: flex;
+            opacity: 1;
+        }
+    }
+
 
     img {
         display: block;
         height: 100%;
         aspect-ratio: 1 / 1;
         object-fit: cover;
+        transform: translateX(0);
+        transition: .5s;
+        //animation: none;
+    }
+
+    .left,
+    .right {
+        position: absolute;
+        height: 100%;
+        width: 20%;
+        background: #0006;
+        border: none;
+        z-index: 1;
+
+        &:hover {
+            background: #0009;
+            cursor: pointer;
+        }
+    }
+
+    .left {
+        justify-self: left;
+        &:hover {
+            border-right: 2px dotted #ddd;
+        }
+    }
+
+    .right {
+        justify-self: right;
+        &:hover {
+            border-left: 2px dotted #ddd;
+        }
     }
 
     ul {
@@ -23,7 +68,6 @@
         position: absolute;
         align-self: end;
         justify-self: center;
-        display: flex;
         justify-content: center;
         align-items: center;
         gap: 10px;
@@ -40,12 +84,17 @@
             border: 2px solid #555;
             border-radius: 50%;
             background-color: #fff;
+            cursor: pointer;
 
             &:checked {
                 background-color: rgb(106, 182, 253);
             }
         }
-    }
+    }   
+}
 
-    
+@keyframes slideLeft {
+    100% {
+        transform: translateX(100%);
+    }
 }
