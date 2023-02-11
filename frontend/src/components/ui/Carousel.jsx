@@ -1,11 +1,7 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { lazy, useEffect, useState, useMemo, memo } from 'react'
 import styles from "../css/Carousel.module.scss";
 import $ from "jquery";
-import { useRef } from 'react';
-import EmptyImage from './EmptyImage';
-import { useMemo, memo } from 'react';
+const EmptyImage = lazy(() => import('./EmptyImage'));
 
 const UlList = memo(({_key, images, currentIndx, setCurrentImageIndx}) => {
     let refs = useMemo(() => [], []);
@@ -26,7 +22,7 @@ const UlList = memo(({_key, images, currentIndx, setCurrentImageIndx}) => {
                         className={styles.switch__images} 
                         name = {"switch__images" + _key}
                         type = "radio"
-                        ref = {ref => refs[i] = ref}
+                        ref = {ref => !refs[i] && (refs[i] = ref)}
                         onClick = {() => setCurrentImageIndx(i)}
                     />
                 </li>
@@ -37,41 +33,33 @@ const UlList = memo(({_key, images, currentIndx, setCurrentImageIndx}) => {
 
 function Carousel({_key, images}) {
   const [currentImageIndx, setCurrentImageIndx] = useState(0);
-  const selfRef = useRef(null);
-  const imgRef = useRef(null);
-
-  const switchImage = (direction) => {
-    return () => {
-      switch(direction) {
-        case "left":
-          setCurrentImageIndx(v => (v != 0?(v - 1):(images.length - 1)));
-          break;
-        case "right":
-          setCurrentImageIndx(v => ((v + 1) % (images.length)));
-          break;
-      }
-    }
-  }
-
-  useEffect(() => {
-    console.log("Current indx", currentImageIndx);
-  }, [currentImageIndx])
 
   return (
-    <div className={styles.carousel} ref = {selfRef}>
-      <button className={styles.left} onClick = {() => setCurrentImageIndx(v => (v != 0?(v - 1):(images.length - 1)))}></button>
-      <button className={styles.right} onClick = {() => setCurrentImageIndx(v => ((v + 1) % (images.length)))}></button>
+    <div className={styles.carousel}>
+      <button 
+        className={styles.left} 
+        onClick = {() => setCurrentImageIndx(v => (v?(v - 1):(images.length - 1)))}
+      />
+      <button 
+        className={styles.right} 
+        onClick = {() => setCurrentImageIndx(v => ((v + 1) % (images.length)))} 
+      />
       {images.length
-        && 
+        ? 
         <>
-            <img ref = {imgRef} className = "" src={images[currentImageIndx]?.src} alt={currentImageIndx} />
-            <UlList _key = {_key} images = {images} currentIndx = {currentImageIndx} setCurrentImageIndx = {setCurrentImageIndx} />
+            <img className = "" src={images[currentImageIndx]?.src} alt={currentImageIndx} />
+            <UlList 
+              _key = {_key} 
+              images = {images} 
+              currentIndx = {currentImageIndx} 
+              setCurrentImageIndx = {setCurrentImageIndx} />
         </>
-        || <EmptyImage />
+        :
+        <EmptyImage />
       }
       
     </div>
   )
 }
-//
+
 export default Carousel

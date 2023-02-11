@@ -4,10 +4,8 @@ import home_icon from "../../assets/icons/icons8-home.svg";
 import search_icon from "../../assets/icons/icons8-search.svg"
 import Carousel from '../../components/ui/Carousel';
 import {images} from "../../data/images.js";
-import { useEffect } from 'react';
 
 function PostItem({_key, post}) {
-
   return (
     <div className={styles.post__item}>
       <div className = {styles.post__header}>
