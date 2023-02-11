@@ -5,17 +5,21 @@ import styles from "../css/Carousel.module.scss";
 import $ from "jquery";
 import { useRef } from 'react';
 import EmptyImage from './EmptyImage';
-import { useId, memo } from 'react';
-import { useMemo } from 'react';
+import { useMemo, memo } from 'react';
 
-function useRefs(number, refs = []) {
-  refs = [...new Array(number).fill([useRef(null)])];
-  return refs;
-}
 
 const UlList = ({_key, images, currentIndx, setCurrentImageIndx}) => {
+    let refs = useMemo(() => [], []);
+    let prevIndx = useMemo(() => currentIndx, []);
+
+    useEffect(() => {
+      $(refs[prevIndx]).prop("checked", false);
+      $(refs[currentIndx]).prop("checked", true);
+      prevIndx = currentIndx;
+    }, [currentIndx]);
+//git commit -m "changed 'Carousel' component, so now it uses refs"
     return (
-        <ul id = "ul_select">
+        <ul>
             {images.map((image, i) => (
                 <li key = {image.id}>
                     <input
@@ -23,7 +27,7 @@ const UlList = ({_key, images, currentIndx, setCurrentImageIndx}) => {
                         className={styles.switch__images} 
                         name = {"switch__images" + _key}
                         type = "radio"
-                        checked = {i == +currentIndx}
+                        ref = {ref => refs[i] = ref}
                         onClick = {() => setCurrentImageIndx(i)}
                     />
                 </li>
@@ -50,10 +54,14 @@ function Carousel({_key, images}) {
     }
   }
 
+  useEffect(() => {
+    console.log("Current indx", currentImageIndx);
+  }, [currentImageIndx])
+
   return (
     <div className={styles.carousel} ref = {selfRef}>
-      <button className={styles.left} onClick = {switchImage("left")}></button>
-      <button className={styles.right} onClick = {switchImage("right")}></button>
+      <button className={styles.left} onClick = {() => setCurrentImageIndx(v => (v != 0?(v - 1):(images.length - 1)))}></button>
+      <button className={styles.right} onClick = {() => setCurrentImageIndx(v => ((v + 1) % (images.length)))}></button>
       {images.length
         && 
         <>
