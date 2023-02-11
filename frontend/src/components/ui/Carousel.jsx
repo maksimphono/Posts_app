@@ -7,8 +7,7 @@ import { useRef } from 'react';
 import EmptyImage from './EmptyImage';
 import { useMemo, memo } from 'react';
 
-
-const UlList = ({_key, images, currentIndx, setCurrentImageIndx}) => {
+const UlList = memo(({_key, images, currentIndx, setCurrentImageIndx}) => {
     let refs = useMemo(() => [], []);
     let prevIndx = useMemo(() => currentIndx, []);
 
@@ -17,7 +16,7 @@ const UlList = ({_key, images, currentIndx, setCurrentImageIndx}) => {
       $(refs[currentIndx]).prop("checked", true);
       prevIndx = currentIndx;
     }, [currentIndx]);
-//git commit -m "changed 'Carousel' component, so now it uses refs"
+
     return (
         <ul>
             {images.map((image, i) => (
@@ -34,7 +33,7 @@ const UlList = ({_key, images, currentIndx, setCurrentImageIndx}) => {
             ))}
         </ul>
     )
-}
+})
 
 function Carousel({_key, images}) {
   const [currentImageIndx, setCurrentImageIndx] = useState(0);
